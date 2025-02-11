@@ -1,0 +1,313 @@
+<div class="min-h-screen flex bg-gray-100 dark:bg-[#0f172a] overflow-hidden">
+    <!-- Left Panel - Decorative -->
+    <div class="hidden lg:flex lg:w-1/2 relative items-center justify-center bg-gradient-to-br from-indigo-500 to-purple-600 dark:from-indigo-600 dark:to-purple-800">
+        <div class="absolute inset-0 bg-[url('https://ik.imagekit.io/rice/gesture-pattern.png')] opacity-10"></div>
+        <div class="relative z-10 px-12 text-white text-center">
+            <h1 class="text-5xl font-bold mb-6">GestureAI Hub</h1>
+            <p class="text-xl text-indigo-100">Transform your interactions with AI-powered gesture recognition</p>
+            <div class="mt-12 space-y-4">
+                <div class="flex items-center space-x-3 text-indigo-100">
+                    <i class="fas fa-hand-paper text-2xl"></i>
+                    <span>Real-time gesture detection</span>
+                </div>
+                <div class="flex items-center space-x-3 text-indigo-100">
+                    <i class="fas fa-brain text-2xl"></i>
+                    <span>Advanced AI processing</span>
+                </div>
+                <div class="flex items-center space-x-3 text-indigo-100">
+                    <i class="fas fa-shield-alt text-2xl"></i>
+                    <span>Secure and private</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Right Panel - Auth Form -->
+    <div class="w-full lg:w-1/2 flex items-center justify-center p-8">
+        <div class="w-full max-w-md">
+            <div class="backdrop-blur-xl bg-white/80 dark:bg-gray-800/80 rounded-2xl p-8 shadow-2xl transition-all duration-500">
+                <div class="text-center mb-8">
+                    <h2 id="auth-title" class="text-3xl font-bold bg-gradient-to-r from-indigo-600 to-purple-600 bg-clip-text text-transparent">
+                        Welcome Back
+                    </h2>
+                    <p id="auth-subtitle" class="mt-2 text-gray-600 dark:text-gray-400">Sign in to continue your journey</p>
+                </div>
+
+                <form id="auth-form" class="space-y-6" novalidate>
+                    <button id="google-auth" type="button"
+                        class="group w-full flex items-center justify-center px-4 py-3 border-2 border-gray-300 dark:border-gray-600 rounded-xl transition-all duration-300 hover:border-indigo-500 dark:hover:border-indigo-400">
+                        <img class="h-5 w-5 mr-2" src="https://www.svgrepo.com/show/475656/google-color.svg" alt="Google logo">
+                        <span id="google-text" class="text-gray-700 dark:text-gray-300 group-hover:text-indigo-600 dark:group-hover:text-indigo-400">
+                            Continue with Google
+                        </span>
+                    </button>
+
+                    <div class="relative">
+                        <div class="absolute inset-0 flex items-center">
+                            <div class="w-full border-t border-gray-300 dark:border-gray-600"></div>
+                        </div>
+                        <div class="relative flex justify-center text-sm">
+                            <span class="px-4 bg-white dark:bg-gray-800 text-gray-500 dark:text-gray-400">
+                                or continue with email
+                            </span>
+                        </div>
+                    </div>
+
+                    <div id="signup-fields" class="hidden space-y-4 transition-all duration-300">
+                        <div class="group">
+                            <input type="text" id="name" required
+                                class="w-full px-4 py-3 bg-gray-50 dark:bg-gray-700/50 border-2 border-gray-200 dark:border-gray-600 rounded-xl focus:border-indigo-500 dark:focus:border-indigo-400 focus:outline-none transition-all duration-300 text-gray-900 dark:text-gray-100"
+                                placeholder="Full name">
+                            <p class="error-message hidden mt-1 text-sm text-red-500 dark:text-red-400"></p>
+                        </div>
+                    </div>
+
+                    <div class="space-y-4">
+                        <div class="group relative">
+                            <input type="email" id="email" required
+                                class="w-full px-4 py-3 bg-gray-50 dark:bg-gray-700/50 border-2 border-gray-200 dark:border-gray-600 rounded-xl focus:border-indigo-500 dark:focus:border-indigo-400 focus:outline-none transition-all duration-300 text-gray-900 dark:text-gray-100"
+                                placeholder="Email address">
+                            <p class="error-message hidden mt-1 text-sm text-red-500 dark:text-red-400"></p>
+                        </div>
+                        <div class="group relative">
+                            <input type="password" id="password" required
+                                class="w-full px-4 py-3 bg-gray-50 dark:bg-gray-700/50 border-2 border-gray-200 dark:border-gray-600 rounded-xl focus:border-indigo-500 dark:focus:border-indigo-400 focus:outline-none transition-all duration-300 text-gray-900 dark:text-gray-100"
+                                placeholder="Password">
+                            <p class="error-message hidden mt-1 text-sm text-red-500 dark:text-red-400"></p>
+                        </div>
+                        <div id="confirm-password-field" class="group relative hidden">
+                            <input type="password" id="confirm-password" required
+                                class="w-full px-4 py-3 bg-gray-50 dark:bg-gray-700/50 border-2 border-gray-200 dark:border-gray-600 rounded-xl focus:border-indigo-500 dark:focus:border-indigo-400 focus:outline-none transition-all duration-300 text-gray-900 dark:text-gray-100"
+                                placeholder="Confirm Password">
+                            <p class="error-message hidden mt-1 text-sm text-red-500 dark:text-red-400"></p>
+                        </div>
+                    </div>
+
+                    <div id="signin-options" class="flex items-center justify-between text-sm">
+                        <label class="flex items-center space-x-2 cursor-pointer group">
+                            <div class="relative">
+                                <input type="checkbox" class="peer sr-only">
+                                <div class="w-5 h-5 border-2 border-gray-300 dark:border-gray-600 rounded transition-all duration-300 peer-checked:border-indigo-500 peer-checked:bg-indigo-500 dark:peer-checked:border-indigo-400 dark:peer-checked:bg-indigo-400">
+                                </div>
+                                <div class="absolute inset-0 flex items-center justify-center opacity-0 peer-checked:opacity-100 transition-opacity duration-300">
+                                    <svg class="w-3 h-3 text-white" viewBox="0 0 12 10" fill="none">
+                                        <path d="M1.5 5.5L4.5 8.5L10.5 1.5" stroke="currentColor" stroke-width="2"
+                                            stroke-linecap="round" stroke-linejoin="round" />
+                                    </svg>
+                                </div>
+                            </div>
+                            <span class="text-gray-700 dark:text-gray-300">Remember me</span>
+                        </label>
+                        <a href="#" class="text-indigo-600 hover:text-indigo-500 dark:text-indigo-400">
+                            Forgot password?
+                        </a>
+                    </div>
+
+                    <button type="submit" id="submit-button"
+                        class="w-full py-3 px-4 bg-gradient-to-r from-indigo-600 to-purple-600 hover:from-indigo-700 hover:to-purple-700 text-white rounded-xl font-medium shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-0.5">
+                        Sign in
+                    </button>
+
+                    <p class="text-center text-sm text-gray-600 dark:text-gray-400">
+                        <span id="toggle-text">Don't have an account?</span>
+                        <a href="#" id="toggle-auth" class="ml-1 text-indigo-600 hover:text-indigo-500 dark:text-indigo-400 font-medium">
+                            Sign up
+                        </a>
+                    </p>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        let isSignUp = false;
+        const form = document.getElementById('auth-form');
+        const toggleAuth = document.getElementById('toggle-auth');
+        const authTitle = document.getElementById('auth-title');
+        const authSubtitle = document.getElementById('auth-subtitle');
+        const submitButton = document.getElementById('submit-button');
+        const signupFields = document.getElementById('signup-fields');
+        const signinOptions = document.getElementById('signin-options');
+        const toggleText = document.getElementById('toggle-text');
+        const googleText = document.getElementById('google-text');
+        const confirmPasswordField = document.getElementById('confirm-password-field');
+
+        const validateEmail = (email) => {
+            const re = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            return re.test(email);
+        };
+
+        const validatePassword = (password) => {
+            return password.length >= 6;
+        };
+
+        const validateName = (name) => {
+            return name.trim().length >= 2;
+        };
+
+        const showError = (input, message) => {
+            const errorElement = input.nextElementSibling;
+            errorElement.textContent = message;
+            errorElement.classList.remove('hidden');
+            input.classList.add('border-red-500', 'dark:border-red-400');
+        };
+
+        const hideError = (input) => {
+            const errorElement = input.nextElementSibling;
+            errorElement.classList.add('hidden');
+            input.classList.remove('border-red-500', 'dark:border-red-400');
+        };
+
+        form.addEventListener('submit', function(e) {
+            e.preventDefault();
+            let isValid = true;
+            const email = document.getElementById('email');
+            const password = document.getElementById('password');
+
+            document.querySelectorAll('.error-message').forEach(err => err.classList.add('hidden'));
+
+            if (!validateEmail(email.value)) {
+                showError(email, 'Please enter a valid email address');
+                isValid = false;
+            } else {
+                hideError(email);
+            }
+
+            if (!validatePassword(password.value)) {
+                showError(password, 'Password must be at least 6 characters long');
+                isValid = false;
+            } else {
+                hideError(password);
+            }
+
+            if (isSignUp) {
+                const name = document.getElementById('name');
+                const confirmPassword = document.getElementById('confirm-password');
+
+                if (!validateName(name.value)) {
+                    showError(name, 'Name must be at least 2 characters long');
+                    isValid = false;
+                } else {
+                    hideError(name);
+                }
+
+                if (password.value !== confirmPassword.value) {
+                    showError(confirmPassword, 'Passwords do not match');
+                    isValid = false;
+                } else {
+                    hideError(confirmPassword);
+                }
+            }
+
+            if (isValid) {
+                const formData = {
+                    email: email.value,
+                    password: password.value,
+                    isSignUp: isSignUp
+                };
+
+                if (isSignUp) {
+                    formData.name = document.getElementById('name').value;
+                }
+
+                fetch('/auth/submit', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify(formData)
+                })
+                .then(response => response.json())
+                .then(data => {
+                    if (data.success) {
+                        console.log('Form submitted successfully');
+                        // You can add redirect logic here later
+                    }
+                })
+                .catch(error => {
+                    console.error('Error:', error);
+                });
+            }
+        });
+
+        toggleAuth.addEventListener('click', function (e) {
+            e.preventDefault();
+            isSignUp = !isSignUp;
+
+            form.reset();
+            document.querySelectorAll('.error-message').forEach(err => err.classList.add('hidden'));
+            document.querySelectorAll('input').forEach(input => {
+                input.classList.remove('border-red-500', 'dark:border-red-400');
+            });
+
+            signupFields.classList.toggle('hidden');
+            signinOptions.classList.toggle('hidden');
+            confirmPasswordField.classList.toggle('hidden');
+
+            if (isSignUp) {
+                authTitle.textContent = 'Create your account';
+                authSubtitle.textContent = 'Join GestureAI Hub today';
+                submitButton.textContent = 'Sign up';
+                toggleText.textContent = 'Already have an account?';
+                toggleAuth.textContent = 'Sign in';
+                googleText.textContent = 'Sign up with Google';
+            } else {
+                authTitle.textContent = 'Welcome back';
+                authSubtitle.textContent = 'Sign in to your account';
+                submitButton.textContent = 'Sign in';
+                toggleText.textContent = "Don't have an account?";
+                toggleAuth.textContent = 'Sign up';
+                googleText.textContent = 'Continue with Google';
+            }
+        });
+
+        document.querySelectorAll('input').forEach(input => {
+            input.addEventListener('input', function() {
+                if (this.value) {
+                    switch(this.id) {
+                        case 'email':
+                            if (!validateEmail(this.value)) {
+                                showError(this, 'Please enter a valid email address');
+                            } else {
+                                hideError(this);
+                            }
+                            break;
+                        case 'password':
+                            if (!validatePassword(this.value)) {
+                                showError(this, 'Password must be at least 6 characters long');
+                            } else {
+                                hideError(this);
+                                const confirmPassword = document.getElementById('confirm-password');
+                                if (confirmPassword && confirmPassword.value) {
+                                    if (this.value !== confirmPassword.value) {
+                                        showError(confirmPassword, 'Passwords do not match');
+                                    } else {
+                                        hideError(confirmPassword);
+                                    }
+                                }
+                            }
+                            break;
+                        case 'name':
+                            if (!validateName(this.value)) {
+                                showError(this, 'Name must be at least 2 characters long');
+                            } else {
+                                hideError(this);
+                            }
+                            break;
+                        case 'confirm-password':
+                            if (this.value !== document.getElementById('password').value) {
+                                showError(this, 'Passwords do not match');
+                            } else {
+                                hideError(this);
+                            }
+                            break;
+                    }
+                } else {
+                    hideError(this);
+                }
+            });
+        });
+    });
+</script>
