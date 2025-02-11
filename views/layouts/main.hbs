@@ -91,15 +91,14 @@
                         <i class="fas fa-moon text-gray-600 dark:text-gray-300 dark:hidden"></i>
                         <i class="fas fa-sun text-gray-300 dark:text-gray-300 hidden dark:block"></i>
                     </button>
-                    <button class="p-2 rounded-full hover:bg-gray-100 dark:hover:bg-gray-700">
-                        <i class="fas fa-cog text-gray-600 dark:text-gray-300"></i>
-                    </button>
-                    <button class="p-2 rounded-full hover:bg-gray-100 dark:hover:bg-gray-700">
-                        <i class="fas fa-user text-gray-600 dark:text-gray-300"></i>
-                    </button>
-                    <button class="p-2 rounded-full hover:bg-gray-100 dark:hover:bg-gray-700">
-                        <i class="fas fa-bell text-gray-600 dark:text-gray-300"></i>
-                    </button>
+                    {{#if user}}
+                        <a href="/settings" class="p-2 rounded-full hover:bg-gray-100 dark:hover:bg-gray-700">
+                            <i class="fas fa-cog text-gray-600 dark:text-gray-300"></i>
+                        </a>
+                        <a href="/auth/logout" class="p-2 rounded-full hover:bg-gray-100 dark:hover:bg-gray-700">
+                            <i class="fas fa-sign-out-alt text-gray-600 dark:text-gray-300"></i>
+                        </a>
+                    {{/if}}
                 </div>
             </div>
         </div>
