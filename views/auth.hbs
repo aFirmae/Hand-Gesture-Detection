@@ -143,6 +143,8 @@
 
                 const data = await response.json();
                 if (data.success && data.url) {
+                    // Instead of directly redirecting, store the current URL first
+                    sessionStorage.setItem('preAuthPath', window.location.pathname);
                     window.location.href = data.url;
                 } else {
                     throw new Error(data.error || 'Failed to initialize Google login');

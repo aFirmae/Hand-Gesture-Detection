@@ -45,6 +45,73 @@ app.get('/auth', (req, res) => {
     });
 });
 
+// Add this after your existing auth routes
+app.get('/auth/callback', async (req, res) => {
+    res.send(`
+        <script>
+            const hashParams = new URLSearchParams(window.location.hash.substring(1));
+            const access_token = hashParams.get('access_token');
+            
+            if (access_token) {
+                fetch('/auth/callback/token', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ access_token })
+                })
+                .then(response => response.json())
+                .then(data => {
+                    window.location.href = data.success ? '/' : '/auth?error=' + encodeURIComponent(data.error);
+                })
+                .catch(error => {
+                    window.location.href = '/auth?error=' + encodeURIComponent(error.message);
+                });
+            } else {
+                window.location.href = '/auth?error=No access token found';
+            }
+        </script>
+    `);
+});
+
+app.post('/auth/callback/token', async (req, res) => {
+    try {
+        const { access_token } = req.body;
+        if (!access_token) throw new Error('No access token provided');
+
+        const { data: { user }, error } = await supabase.auth.getUser(access_token);
+        if (error || !user) throw error || new Error('User not found');
+
+        req.session.user = { access_token, user };
+        res.json({ success: true });
+    } catch (error) {
+        console.error('Auth callback error:', error);
+        res.json({ success: false, error: error.message });
+    }
+});
+
+// Modify your existing Google auth route
+app.post('/auth/google', async (req, res) => {
+    try {
+        const redirectTo = `${process.env.APP_URL}/auth/callback`;
+        const { data, error } = await supabase.auth.signInWithOAuth({
+            provider: 'google',
+            options: {
+                redirectTo,
+                queryParams: {
+                    access_type: 'offline',
+                    prompt: 'consent',
+                }
+            }
+        });
+        
+        if (error) throw error;
+        res.json({ success: true, url: data.url });
+    } catch (error) {
+        console.error('Google auth error:', error);
+        res.status(400).json({ success: false, error: error.message });
+    }
+});
+
+// Modify your existing auth submit route
 app.post('/auth/submit', async (req, res) => {
     const { email, password, name, isSignUp } = req.body;
     
@@ -61,7 +128,10 @@ app.post('/auth/submit', async (req, res) => {
             });
             
             if (error) throw error;
-            res.json({ success: true, message: 'Please check your email to confirm registration' });
+            
+            // Store session immediately after signup
+            req.session.user = data.session;
+            res.json({ success: true, redirect: '/' });
         } else {
             const { data, error } = await supabase.auth.signInWithPassword({
                 email,
@@ -74,20 +144,6 @@ app.post('/auth/submit', async (req, res) => {
         }
     } catch (error) {
         console.error('Auth error:', error);
-        res.status(400).json({ success: false, error: error.message });
-    }
-});
-
-app.post('/auth/google', async (req, res) => {
-    try {
-        const { data, error } = await supabase.auth.signInWithOAuth({
-            provider: 'google'
-        });
-        
-        if (error) throw error;
-        res.json({ success: true, url: data.url });
-    } catch (error) {
-        console.error('Google auth error:', error);
         res.status(400).json({ success: false, error: error.message });
     }
 });

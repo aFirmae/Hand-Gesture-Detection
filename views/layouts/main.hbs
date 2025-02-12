@@ -109,6 +109,15 @@
         {{{body}}}
     </main>
 
+    <!-- After the nav section and before the main content -->
+    {{#if user}}
+        {{#unless user.user_metadata.email_verified}}
+            <div class="bg-yellow-100 border-l-4 border-yellow-500 text-yellow-700 p-4 fixed w-full z-40 top-16">
+                <p class="font-medium">Please verify your email address to access all features. Check your inbox for the verification link.</p>
+            </div>
+        {{/unless}}
+    {{/if}}
+
     <script>
         document.addEventListener('DOMContentLoaded', function () {
             // Theme initialization
