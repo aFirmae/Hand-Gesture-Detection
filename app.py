@@ -22,7 +22,6 @@ mp_hands = mp.solutions.hands
 mp_drawing = mp.solutions.drawing_utils
 
 # Initialize hands with solution_options parameter
-# This fixes the MediaPipe initialization error
 hands = mp_hands.Hands(
     static_image_mode=False,
     max_num_hands=1,
