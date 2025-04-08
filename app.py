@@ -311,7 +311,7 @@ def capture_image():
 
 if __name__ == '__main__':
     try:
-        socketio.run(app, debug=True, host='0.0.0.0', port=5000, allow_unsafe_werkzeug=True)
+        socketio.run(app, debug=True, host='0.0.0.0', port=8000, allow_unsafe_werkzeug=True)
     except Exception as e:
         print(f"Error starting server: {e}")
         if camera is not None:
